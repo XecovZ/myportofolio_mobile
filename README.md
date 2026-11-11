@@ -46,6 +46,8 @@ Kelas : PBP B
 6. Hot reload mengupdate perubahan kode ke aplikasi yang sedang berjalan dan membuat ulang tampilan tanpa menghapus state. Hot restart menjalankan ulang applikasi dari main() sehingga state hilang. Hot restart diperlukan ketika mengubah main(), initState(), variable global, atau class structure (misal Stateful menjadi Stateless). Sedangkan full restart diperlukan untuk perubahan kode native atau penambahan package dengan kode native.
 
 
+Link chat history Claude: https://claude.ai/share/ac70d9d0-56a9-442d-bcc7-44d0bbdcd2be
+
 
 ### AI Disclosure
 
