@@ -49,6 +49,24 @@ Kelas : PBP B
 Link chat history Claude: https://claude.ai/share/ac70d9d0-56a9-442d-bcc7-44d0bbdcd2be
 
 
+### Tugas 8
+
+1. push() menambah halaman baru di atas stack sehingga user bisa kembali (back), pushReplacement() mengganti halaman yang sedang tampil sehingga tidak bisa kembali ke halaman sebelumnya, pop() membuang halaman teratas pada stack untuk kembali ke halaman sebelumnya. Formulir dibuka dari card action "Tambah Achievement" dengan Navigator.push(), sedangkan opsi Home di drawer memakai Navigator.pushReplacement() ke MyHomePage() yang menggantikan halaman sekarang dengan halaman utama (menu) sehingga stack tidak menumpuk.
+
+
+2. Scaffold menyediakan fixed slot (appBar, drawer, body) yang dipakai oleh semua halaman, dan LeftDrawer diwrite sekali lalu dipasang di tiap halaman sehingga struktur dan navigasinya seragam. Contoh warna tema: indigo di seedColor tema, AppBar dan tombol Save di AchievementFormPage dan ProjectFormPage, serta DrawHeader sehingga halaman achievement tetap terasa satu aplikasi dengan halaman-halaman lainnya.
+
+
+3. Column menyusun empat field (nama, organizer, category, dan dateAwarded) secara vertikal, Padding memberi jarak antar field, dan ShingleChildScrollView membuat form bisa discroll saat space layar terbatas (misalnya ketika keyboard di mobbile terbuka atau showDatePicker memakan space) sehingga tombol save tidak terpotong dan tidak terjadi overflow.
+
+
+4. GlobaKey<FormState> (_formKey) menghubungkan tombol Save ke form, validator di tiap field mereturn pesan error atau null, dan validate() menjalankan semuanya sebelum dialog ditampilkan. Contoh yang ditolak: Nama Achievement yang lebih dari 100 karakter (pesan "Maksimal 100 karakter!") atau field tanggal yang belum dipilih (pesan "Tanggal harus dipilih!"). Hanya memilih jenis input belum cukup. Field tanggal sudah readOnly dan memakai showDatePicker, tapi pengguna tetap bisa menekan Save tanpa memilih tanggal. Jad, validator tetap diperlukan agar data null atau invalid (luar batas) tidak lolos.
+
+
+Link chat history Claude: https://claude.ai/share/ffd056bb-7dae-41d2-a699-af3eb8d4b0e8
+
+
 ### AI Disclosure
 
-Saya menggunakan Claude Opus 5.5 untuk membantu pengerjaan tugas PBP. Strategi yang saya gunakan adalah: meminta untuk menjelaskan bagaimana cara melakukan hal yang dispesifikasikan oleh soal, kemudian saya implementasikan itu sendiri dan meminta feedback apakah sudah sesuai atau belum. Ketika terdapat erorr/bug, saya meminta AI untuk menjelaskan apa bug yang terjadi dan bagaimana caranya untuk memperbaiki hal tersebut. Selain itu, saya juga menggunakan AI untuk bertanya pertanyaan-pertanyaan yang lebih spesifik tentang kegunaan suatu kode.
+
+Saya menggunakan Claude Sonnet 5.5 medium untuk membantu pengerjaan tugas PBP. Strategi yang saya gunakan adalah: meminta untuk menjelaskan bagaimana cara melakukan hal yang dispesifikasikan oleh soal, kemudian saya implementasikan itu sendiri dan meminta feedback apakah sudah sesuai atau belum. Ketika terdapat erorr/bug, saya meminta AI untuk menjelaskan apa bug yang terjadi dan bagaimana caranya untuk memperbaiki hal tersebut. Selain itu, saya juga menggunakan AI untuk bertanya pertanyaan-pertanyaan yang lebih spesifik tentang kegunaan suatu kode.
