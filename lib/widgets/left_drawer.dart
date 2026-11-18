@@ -1,3 +1,4 @@
+import 'package:myportofolio_mobile/screens/achievement_form.dart';
 import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
@@ -31,6 +32,8 @@ class LeftDrawer extends StatelessWidget {
               ],
             ),
           ),
+
+          // Home
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title: const Text('Home'),
@@ -42,6 +45,8 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
+
+          // Project
           ListTile(
             leading: const Icon(Icons.add_circle_outline),
             title: const Text('Add Project'),
@@ -51,6 +56,21 @@ class LeftDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ProjectFormPage(),
+                ),
+              );
+            },
+          ),
+
+          // Achievement
+          ListTile(
+            leading: const Icon(Icons.emoji_events_outlined),
+            title: const Text('Add Achievement'),
+            // Navigasi ke halaman tambah achievement
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AchievementFormPage(),
                 ),
               );
             },
