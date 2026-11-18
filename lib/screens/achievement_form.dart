@@ -14,6 +14,14 @@ class _AchievementFormPageState extends State<AchievementFormPage> {
   String _achievementName = "";
   String _organizer = "";
   String _awardCategory = "Gold"; // default
+  DateTime? _dateAwarded;
+
+  final _dateController = TextEditingController();
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
 
   final List<String> _categories = [
     'Gold',
@@ -58,6 +66,9 @@ class _AchievementFormPageState extends State<AchievementFormPage> {
                     if (value == null || value.trim().isEmpty) {
                       return "Nama Achievement tidak boleh kosong!";
                     }
+                    if (value.trim().length > 100) {
+                      return "Maksimal 100 karakter!";
+                    }
                     return null;
                   },
                 ),
@@ -82,6 +93,9 @@ class _AchievementFormPageState extends State<AchievementFormPage> {
                   validator: (String? value) {
                     if (value == null || value.trim().isEmpty) {
                       return "Penyelenggara lomba tidak boleh kosong!";
+                    }
+                    if (value.trim().length > 100) {
+                      return "Maksimal 100 karakter!";
                     }
                     return null;
                   },
@@ -115,6 +129,44 @@ class _AchievementFormPageState extends State<AchievementFormPage> {
                 ),
               ),
 
+              // === Date Awarded ===
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: _dateController,
+                  readOnly: true, // tidak diketik, hanya lewat date picker
+                  decoration: InputDecoration(
+                    labelText: "Date Awarded",
+                    hintText: "Pilih tanggal",
+                    suffixIcon: const Icon(Icons.calendar_today),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onTap: () async {
+                    final picked = await showDatePicker(
+                      context: context,
+                      initialDate: _dateAwarded ?? DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime.now(),
+                    );
+                    if (picked != null) {
+                      setState(() {
+                        _dateAwarded = picked;
+                        _dateController.text =
+                            "${picked.day}/${picked.month}/${picked.year}";
+                      });
+                    }
+                  },
+                  validator: (String? value) {
+                    if (_dateAwarded == null) {
+                      return "Tanggal harus dipilih!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+
               // === Tombol Simpan ===
               Align(
                 alignment: Alignment.bottomCenter,
@@ -142,6 +194,7 @@ class _AchievementFormPageState extends State<AchievementFormPage> {
                                     Text(
                                       'Kategori Achievement: $_awardCategory',
                                     ),
+                                    Text('Tanggal: ${_dateController.text}'),
                                   ],
                                 ),
                               ),
@@ -151,6 +204,10 @@ class _AchievementFormPageState extends State<AchievementFormPage> {
                                   onPressed: () {
                                     Navigator.pop(context);
                                     _formKey.currentState!.reset();
+                                    _dateController.clear();
+                                    setState(() {
+                                      _dateAwarded = null;
+                                    });
                                   },
                                 ),
                               ],
